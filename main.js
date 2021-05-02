@@ -142,12 +142,10 @@ function backupImage() {}
 
 //----Expanding/collapse functions----
 function clickExpandCTA() {
-  //stopAnimation ();
   Enabler.requestExpand();
 }
 
 function clickCloseCTA() {
-  // console.log('hello')
   stopAnimation();
   Enabler.reportManualClose();
   Enabler.requestCollapse();
@@ -236,7 +234,6 @@ function bgExitHandler(e) {
   clearInterval(collapseStopAnimation);
   stopAnimation();
 
-  // Enabler.exitOverride('Background Exit', 'http://www.this.will.always.navigate.here.com');
   if (isExpanded) {
     Enabler.requestCollapse();
   }
