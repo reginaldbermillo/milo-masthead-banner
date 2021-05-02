@@ -1,5 +1,4 @@
-
-"use strict"
+"use strict";
 
 var collapsed_panel;
 var collapsed_bg_exit;
@@ -21,81 +20,97 @@ var learnMoreBlocker;
 var Blocker;
 var collapseStopAnimation;
 var animationDuration = 0;
-var focused=true;
+var focused = true;
 //----Setting up----
-var expandedborder = document.getElementById("expandedborder")
-expandedborder.style.display="none";
+var expandedborder = document.getElementById("expandedborder");
+expandedborder.style.display = "none";
 // If true, start function. If false, listen for INIT.
 window.onload = function() {
   collapseStopAnimation = setInterval(onFocusTimer, 1000 / 60);
   if (Enabler.isInitialized()) {
-      enablerInitHandler();
+    enablerInitHandler();
   } else {
-      Enabler.addEventListener(studio.events.StudioEvent.INIT, enablerInitHandler);
+    Enabler.addEventListener(
+      studio.events.StudioEvent.INIT,
+      enablerInitHandler
+    );
   }
-}
+};
 
 function enablerInitHandler() {
-    // Start ad, initialize animation,
-    // load in your image assets, call Enabler methods,
-    // and/or include other Studio modules.
-    // Or also, you can start the Polite Load
+  // Start ad, initialize animation,
+  // load in your image assets, call Enabler methods,
+  // and/or include other Studio modules.
+  // Or also, you can start the Polite Load
 
-    if (Enabler.isVisible()) {
-      adVisibilityHandler();
-    } else {
-      Enabler.addEventListener(studio.events.StudioEvent.VISIBLE,
-      adVisibilityHandler);
-    }
-
-
-
+  if (Enabler.isVisible()) {
+    adVisibilityHandler();
+  } else {
+    Enabler.addEventListener(
+      studio.events.StudioEvent.VISIBLE,
+      adVisibilityHandler
+    );
+  }
 }
 function adVisibilityHandler() {
-    // Load in additional assets or start the animation/video
-    InitMH();
+  // Load in additional assets or start the animation/video
+  InitMH();
 }
 
-function addListeners(){
+function addListeners() {
   // Click to Action events
   //Expand-collapse
-  btnExpandCTA_dc.addEventListener('click', clickExpandCTA, false);
-  btnCloseCTA_dc.addEventListener('click', clickCloseCTA, false);
-  ytClose.addEventListener('click', clickYTClose, false);
-
-
-
+  btnExpandCTA_dc.addEventListener("click", clickExpandCTA, false);
+  btnCloseCTA_dc.addEventListener("click", clickCloseCTA, false);
+  ytClose.addEventListener("click", clickYTClose, false);
 
   //btnExpandCTA_dc.addEventListener('mouseover', clickExpandCTA, false);
 
   // Expand Event Listeners
-  Enabler.addEventListener(studio.events.StudioEvent.EXPAND_START,expandStart);
+  Enabler.addEventListener(studio.events.StudioEvent.EXPAND_START, expandStart);
   //Enabler.addEventListener(studio.events.StudioEvent.EXPAND_FINISH,expandFinish);
 
   // Collapse Event Listeners
-  Enabler.addEventListener(studio.events.StudioEvent.COLLAPSE_START,collapseStart);
-  Enabler.addEventListener(studio.events.StudioEvent.COLLAPSE_FINISH,collapseFinish);
+  Enabler.addEventListener(
+    studio.events.StudioEvent.COLLAPSE_START,
+    collapseStart
+  );
+  Enabler.addEventListener(
+    studio.events.StudioEvent.COLLAPSE_FINISH,
+    collapseFinish
+  );
 
   //Exits
-  collapsed_bg_exit.addEventListener('click', bgExitHandler, false);
-  expanded_bg_exit.addEventListener('click', bgExitHandler, false);
+  collapsed_bg_exit.addEventListener("click", bgExitHandler, false);
+  expanded_bg_exit.addEventListener("click", bgExitHandler, false);
 
-  window.addEventListener("focus", function(event) { focused = true;}, false);
-  window.addEventListener("blur", function(event) { focused = false;}, false);
+  window.addEventListener(
+    "focus",
+    function(event) {
+      focused = true;
+    },
+    false
+  );
+  window.addEventListener(
+    "blur",
+    function(event) {
+      focused = false;
+    },
+    false
+  );
 }
 
 //This function should be called only after the Enabler.isInitialized
-function InitMH(){
-
-/*Offset of left,top and width height, respectively, of the expanded Masthead.
+function InitMH() {
+  /*Offset of left,top and width height, respectively, of the expanded Masthead.
   The expansion of a Masthead is only from 970x250 -> 970x500, so this configuration will not change*/
-  Enabler.setExpandingPixelOffsets(0,0,970,500);
+  Enabler.setExpandingPixelOffsets(0, 0, 970, 500);
 
   //Assign Variables
 
-  Blocker= document.getElementById("Blocker")
-  learnMoreBlocker= document.getElementById("learnMoreBlocker")
-  retryBlocker= document.getElementById("retryBlocker");
+  Blocker = document.getElementById("Blocker");
+  learnMoreBlocker = document.getElementById("learnMoreBlocker");
+  retryBlocker = document.getElementById("retryBlocker");
   collapsed_panel = document.getElementById("collapsed-panel");
   collapsed_bg_exit = document.getElementById("collapsed-bg-exit");
   btnExpandCTA_dc = document.getElementById("ctaExpand_dc");
@@ -105,130 +120,124 @@ function InitMH(){
   btnCloseCTA_dc = document.getElementById("ctaClose_dc");
   ytClose = document.getElementById("ytClose");
   learnMore = document.getElementById("learnMore");
-  learnMoreDisplay= document.getElementById("endframe_BG");
-  text2 = document.getElementById('text2')
+  learnMoreDisplay = document.getElementById("endframe_BG");
+  text2 = document.getElementById("text2");
 
-Blocker.style.display="none";
+  Blocker.style.display = "none";
 
   //Adding listeners
   addListeners();
-
 }
 
-function onFocusTimer(){
-
-  if(animationDuration==1100){
+function onFocusTimer() {
+  if (animationDuration == 1100) {
     stopAnimation();
-    clearInterval(collapseStopAnimation)
+    clearInterval(collapseStopAnimation);
   }
   animationDuration++;
- // console.log(animationDuration)
+  // console.log(animationDuration)
 }
 
-function backupImage(){
-
-}
+function backupImage() {}
 
 //----Expanding/collapse functions----
-function clickExpandCTA(){
+function clickExpandCTA() {
   //stopAnimation ();
-
   Enabler.requestExpand();
-
-
 }
 
-function clickCloseCTA(){
+function clickCloseCTA() {
   // console.log('hello')
-  stopAnimation()
-
+  stopAnimation();
   Enabler.reportManualClose();
   Enabler.requestCollapse();
   close = false;
 }
 
-function clickYTClose(){
-  stopAnimation()
-  try{expanded_bg_exit.style.display="none";}catch(Error){}
-  try{expanded_panel.style.display="none";}catch(Error){}
+function clickYTClose() {
+  stopAnimation();
+  try {
+    expanded_bg_exit.style.display = "none";
+  } catch (Error) {}
+  try {
+    expanded_panel.style.display = "none";
+  } catch (Error) {}
 
-  if(isExpanded){
+  if (isExpanded) {
     Enabler.requestCollapse();
   }
 
   close = false;
 }
 
-function learMoreExit(e){
-  clearInterval(collapseStopAnimation)
-  stopAnimation ();
-   if(isExpanded){
+function learMoreExit(e) {
+  clearInterval(collapseStopAnimation);
+  stopAnimation();
+  if (isExpanded) {
     Enabler.requestCollapse();
   }
 }
 
-
-
 function expandStart() {
-  clearInterval(collapseStopAnimation)
+  clearInterval(collapseStopAnimation);
   isExpanded = true;
-  Enabler.startTimer('TMR YT GoSurf: Expansion Time');
+  Enabler.startTimer("TMR YT GoSurf: Expansion Time");
   collapsed_panel.style.display = "none";
   expandedborder.style.display = "block";
-   // Create your animation to expand here.
+  // Create your animation to expand here.
 
   expanded_panel.style.display = "block";
-  retryBlocker.style.display="block";
-  learnMoreBlocker.style.display="block";
-  if(isFirst)
-  {
-    setTimeout(function(){
+  retryBlocker.style.display = "block";
+  learnMoreBlocker.style.display = "block";
+  if (isFirst) {
+    setTimeout(function() {
       gamestart();
-    },2000);
+    }, 2000);
     isFirst = false;
-  }
-  else
-  {
+  } else {
     gamestart();
   }
 
-    Enabler.finishExpand();
+  Enabler.finishExpand();
 }
 
 function collapseStart() {
   isExpanded = false;
 
   // Create your animation to collapse here.
- //expanded_panel.style.display = "none";
+  //expanded_panel.style.display = "none";
 
-
-  try{ Levelupsound.pause();}catch(Error){}
-   try{Levelupsound.currentTime = 0;}catch(Error){}
+  try {
+    Levelupsound.pause();
+  } catch (Error) {}
+  try {
+    Levelupsound.currentTime = 0;
+  } catch (Error) {}
   collapsed_panel.style.display = "block";
   expanded_panel.style.display = "none";
-   Enabler.finishCollapse();
-
+  Enabler.finishCollapse();
 }
 
 function collapseFinish() {
-   expandedborder.style.display = "none";
-  Enabler.stopTimer('TMR YT GoSurf: Expansion Time');
+  expandedborder.style.display = "none";
+  Enabler.stopTimer("TMR YT GoSurf: Expansion Time");
 }
-function addResolveListener(){
-
-   Blocker.style.display="block";
-   learnMoreBlocker.style.display="none";
-   retryBlocker.style.display="none";
-   setTimeout(function(){Blocker.style.display="none";},500)
-   learnMore.addEventListener('click', learMoreExit, false);
+function addResolveListener() {
+  Blocker.style.display = "block";
+  learnMoreBlocker.style.display = "none";
+  retryBlocker.style.display = "none";
+  setTimeout(function() {
+    Blocker.style.display = "none";
+  }, 500);
+  learnMore.addEventListener("click", learMoreExit, false);
 }
 //----Exits----
 function bgExitHandler(e) {
-  clearInterval(collapseStopAnimation)
-  stopAnimation ();
+  clearInterval(collapseStopAnimation);
+  stopAnimation();
 
   // Enabler.exitOverride('Background Exit', 'http://www.this.will.always.navigate.here.com');
-  if(isExpanded){
+  if (isExpanded) {
     Enabler.requestCollapse();
   }
 }
