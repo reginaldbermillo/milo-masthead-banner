@@ -138,8 +138,6 @@ function onFocusTimer() {
   // console.log(animationDuration)
 }
 
-function backupImage() {}
-
 //----Expanding/collapse functions----
 function clickExpandCTA() {
   Enabler.requestExpand();
