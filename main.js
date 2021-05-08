@@ -70,7 +70,6 @@ function addListeners() {
   Enabler.addEventListener(studio.events.StudioEvent.EXPAND_START, expandStart);
   //Enabler.addEventListener(studio.events.StudioEvent.EXPAND_FINISH,expandFinish);
 
-  // Collapse Event Listeners
   Enabler.addEventListener(
     studio.events.StudioEvent.COLLAPSE_START,
     collapseStart
