@@ -58,8 +58,6 @@ function adVisibilityHandler() {
 }
 
 function addListeners() {
-  // Click to Action events
-  //Expand-collapse
   btnExpandCTA_dc.addEventListener("click", clickExpandCTA, false);
   btnCloseCTA_dc.addEventListener("click", clickCloseCTA, false);
   ytClose.addEventListener("click", clickYTClose, false);
