@@ -53,7 +53,7 @@ function enablerInitHandler() {
   }
 }
 function adVisibilityHandler() {
-  // Load in additional assets or start the animation/video
+  
   InitMH();
 }
 
