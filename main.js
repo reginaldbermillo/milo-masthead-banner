@@ -62,7 +62,7 @@ function addListeners() {
   btnCloseCTA_dc.addEventListener("click", clickCloseCTA, false);
   ytClose.addEventListener("click", clickYTClose, false);
 
-  //btnExpandCTA_dc.addEventListener('mouseover', clickExpandCTA, false);
+ 
 
   // Expand Event Listeners
   Enabler.addEventListener(studio.events.StudioEvent.EXPAND_START, expandStart);
