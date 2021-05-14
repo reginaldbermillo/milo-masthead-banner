@@ -61,9 +61,6 @@ function addListeners() {
   btnExpandCTA_dc.addEventListener("click", clickExpandCTA, false);
   btnCloseCTA_dc.addEventListener("click", clickCloseCTA, false);
   ytClose.addEventListener("click", clickYTClose, false);
-
- 
-
   
   Enabler.addEventListener(studio.events.StudioEvent.EXPAND_START, expandStart);
   //Enabler.addEventListener(studio.events.StudioEvent.EXPAND_FINISH,expandFinish);
