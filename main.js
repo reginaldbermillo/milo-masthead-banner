@@ -77,7 +77,7 @@ function addListeners() {
     collapseFinish
   );
 
-  //Exits
+  
   collapsed_bg_exit.addEventListener("click", bgExitHandler, false);
   expanded_bg_exit.addEventListener("click", bgExitHandler, false);
 
