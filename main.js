@@ -208,7 +208,7 @@ function collapseStart() {
 
 function collapseFinish() {
   expandedborder.style.display = "none";
-  Enabler.stopTimer("TMR YT GoSurf: Expansion Time");
+  
 }
 function addResolveListener() {
   Blocker.style.display = "block";
