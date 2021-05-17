@@ -92,7 +92,6 @@ function addListeners() {
   );
 }
 
-//This function should be called only after the Enabler.isInitialized
 function InitMH() {
   /*Offset of left,top and width height, respectively, of the expanded Masthead.
   The expansion of a Masthead is only from 970x250 -> 970x500, so this configuration will not change*/
@@ -208,7 +207,6 @@ function collapseStart() {
 
 function collapseFinish() {
   expandedborder.style.display = "none";
-  
 }
 function addResolveListener() {
   Blocker.style.display = "block";
