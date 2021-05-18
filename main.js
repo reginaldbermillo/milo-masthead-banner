@@ -97,8 +97,6 @@ function InitMH() {
   The expansion of a Masthead is only from 970x250 -> 970x500, so this configuration will not change*/
   Enabler.setExpandingPixelOffsets(0, 0, 970, 500);
 
-  //Assign Variables
-
   Blocker = document.getElementById("Blocker");
   learnMoreBlocker = document.getElementById("learnMoreBlocker");
   retryBlocker = document.getElementById("retryBlocker");
